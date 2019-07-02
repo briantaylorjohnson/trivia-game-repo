@@ -8,7 +8,7 @@ $(document).ready(function()
         {
             1:"1",
             2:"5",
-            3:"12"
+            3:"12",
         },
     },
     {
@@ -18,7 +18,7 @@ $(document).ready(function()
         {
             1:"2",
             2:"6",
-            3:"3"
+            3:"3",
         },
 
     },
@@ -29,84 +29,152 @@ $(document).ready(function()
         {
             1:"Columbus",
             2:"Macon",
-            3:"Gainesville"
+            3:"Gainesville",
         }
     }];
 
     var gameLength = 3;
     var i = 0;
-    var time = 5;
+    var time = 20;
+
+    var correctCount;
+    var wrongCount;
+    var questionCount;
+    var timer;
 
     $("#start-button").show();
     $("#timer").hide();
+    $("#question").empty();
     $("#question").hide();
+    $("#question2").empty();
+    $("#question2").hide();
     $("#answers-div").hide();
+    $("#play-again-button").hide();
 
 
     // This is a function that gets the next trivia question when the player answers a question
     function getNextQuestion()
     {
-        //
-    }
-
-    function timer()
-    {
-            console.log("Timer: " + time +"s");
-            console.log(typeof time);
-            var timer = setInterval(startTimer, 1000);
-            
-            function startTimer()
-            {
-                time--;
-                console.log("Timer: " + time +"s");
-            }
-
-            if(time == 0)
-            {
-                clearInterval();
-            }
-    }
-
-    $("#start-button").on("click", function()
-    {
-        console.log("Game Started");
+        time = 20;
+        timer = setInterval(startTimer, 1000);
         
-        $("#start-button").hide();
+        // Displays next question
+        console.log("Question: " + questionsArr[questionCount].question);
+        console.log("Answer 1: " + questionsArr[questionCount].wrongAnswers[1]);
+        console.log("Answer 2: " + questionsArr[questionCount].wrongAnswers[2]);
+        console.log("Answer 3: " + questionsArr[questionCount].wrongAnswers[3]);
+        console.log("Answer 4: " + questionsArr[questionCount].correctAnswer);
+
+        $("#question").text(questionsArr[questionCount].question);
+        $("#first-answer").text(questionsArr[questionCount].wrongAnswers[1]);
+        $("#second-answer").text(questionsArr[questionCount].wrongAnswers[2]);
+        $("#third-answer").text(questionsArr[questionCount].wrongAnswers[3]);
+        $("#fourth-answer").text(questionsArr[questionCount].correctAnswer);
+    }
+    
+    function endGame()
+    {
+        console.log("Game over!")
+        console.log("Correct Answers: " + correctCount);
+        console.log("Wrong Answers: " + wrongCount);
+
+        $("#timer").text("Game over!");
+        $("#question2").text("Wrong Answers: " + wrongCount);
+        $("#question").text("Correct Answers: " + correctCount);
+        $("#question2").show();
+        $("#question2").text("Wrong Answers: " + wrongCount);
+        $("#answers-div").hide();
+
+        $("#play-again-button").show();
+
+    }
+
+    function startTimer()
+    {
+        if(time == 0)
+        {
+            stopTimer();
+            console.log("Time is up!");
+            $("#timer").text("Time is up!");
+            questionCount++;
+            if( questionCount >= questionsArr.length)
+            {
+                endGame();
+            }
+
+            else
+            {       
+                getNextQuestion();
+            }
+        }
+        else
+        {
+            time--;
+            console.log("Timer: " + time +"s");
+            $("#timer").text(time +"s");
+        }
+    }
+
+    function stopTimer()
+    {
+        clearInterval(timer);
+    }
+
+    $(".start-game").on("click", function()
+    {
+        questionCount = 0;
+        correctCount = 0;
+        wrongCount = 0;
+        
+        console.log("Game Started");
+        $(".start-game").hide();
         $("#timer").show();
+        $("#question2").hide();
         $("#question").show();
         $("#answers-div").show();
 
-        // Displays first question
-        console.log("Question: " + questionsArr[i].question);
-        console.log("Answer 1: " + questionsArr[i].wrongAnswers[1]);
-        console.log("Answer 2: " + questionsArr[i].wrongAnswers[2]);
-        console.log("Answer 3: " + questionsArr[i].wrongAnswers[3]);
-        console.log("Answer 4: " + questionsArr[i].correctAnswer);
-
-        // Starts first timer
-        timer();
-
-        $(".answer").on("click", function()
-        {
-            console.log("Button Clicked: " + ($(this).text()));
-            console.log("Correct Answer: " + questionsArr[i].correctAnswer);
-            if ($(this).text() != questionsArr[i].correctAnswer)
-            {
-                console.log("Wrong answer!");
-                // Increase wrong answer count
-                wrongCount++;
-                getNextQuestion();
-            }
-            else
-            {
-                console.log("Correct Answer");
-                // Increase correct answer count
-                correctCount++;
-                getNextQuestion();
-
-            }
-        });
-
+        getNextQuestion();
     });
 
+    $(".answer").on("click", function()
+    {
+        console.log("Button Clicked: " + ($(this).text()));
+        console.log("Correct Answer: " + questionsArr[questionCount].correctAnswer);
+        if ($(this).text() != questionsArr[questionCount].correctAnswer)
+        {
+            console.log("Wrong answer!");
+            // Increase wrong answer count
+            wrongCount++;
+            questionCount++;
+            stopTimer();
+            if( questionCount >= questionsArr.length)
+            {
+                endGame();
+            }
+
+            else
+            {       
+                getNextQuestion();
+            }
+        }
+        
+        else if (questionCount <= questionsArr.length)
+        {
+            console.log("Correct Answer");
+            // Increase correct answer count
+            correctCount++;
+            questionCount++;
+            stopTimer();
+            if( questionCount >= questionsArr.length)
+            {
+                endGame();
+            }
+
+            else
+            {       
+                getNextQuestion();
+            }
+
+        }
+    });
 });
