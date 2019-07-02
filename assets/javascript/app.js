@@ -41,6 +41,7 @@ $(document).ready(function()
     var wrongCount;
     var questionCount;
     var timer;
+    var modal;
 
     $("#start-button").show();
     $("#timer").hide();
@@ -55,6 +56,7 @@ $(document).ready(function()
     // This is a function that gets the next trivia question when the player answers a question
     function getNextQuestion()
     {
+        $("#timer").text("20s");
         time = 20;
         timer = setInterval(startTimer, 1000);
         
@@ -120,6 +122,42 @@ $(document).ready(function()
         clearInterval(timer);
     }
 
+    function wrongAnswer()
+    {
+        console.log("Wrong answer!");
+        $("#correctAnswer1").text(questionsArr[questionCount].correctAnswer);
+        $("#wrongAnswer").modal();
+
+        // Increase wrong answer count
+        wrongCount++;
+        questionCount++;
+        stopTimer();
+
+        if( questionCount >= questionsArr.length)
+        {
+            modalClose(endGame());;
+        }
+
+        else
+        {       
+            modal = setTimeout(function () { getNextQuestion(); $("#wrongAnswer").modal('hide'); }, 3000);
+        }
+    }
+
+    function correctAnswer()
+    {
+        console.log("Correct Answer");
+        // Increase correct answer count
+        correctCount++;
+        questionCount++;
+        stopTimer();
+    }
+
+    function modalClose(passedFunction)
+    {
+        
+    }
+
     $(".start-game").on("click", function()
     {
         questionCount = 0;
@@ -128,6 +166,7 @@ $(document).ready(function()
         
         console.log("Game Started");
         $(".start-game").hide();
+        $("#timer").text("20s");
         $("#timer").show();
         $("#question2").hide();
         $("#question").show();
@@ -142,37 +181,21 @@ $(document).ready(function()
         console.log("Correct Answer: " + questionsArr[questionCount].correctAnswer);
         if ($(this).text() != questionsArr[questionCount].correctAnswer)
         {
-            console.log("Wrong answer!");
-            // Increase wrong answer count
-            wrongCount++;
-            questionCount++;
-            stopTimer();
-            if( questionCount >= questionsArr.length)
-            {
-                endGame();
-            }
-
-            else
-            {       
-                getNextQuestion();
-            }
+            wrongAnswer();
         }
         
-        else if (questionCount <= questionsArr.length)
+        else
         {
-            console.log("Correct Answer");
-            // Increase correct answer count
-            correctCount++;
-            questionCount++;
-            stopTimer();
+            correctAnswer();
+
             if( questionCount >= questionsArr.length)
             {
-                endGame();
+                modalClose(endGame());;
             }
 
             else
             {       
-                getNextQuestion();
+                modalClose(getNextQuestion());
             }
 
         }

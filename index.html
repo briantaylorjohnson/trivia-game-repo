@@ -49,7 +49,40 @@
                 </div>
             </div>
     </div>
+    <div class="modal bd-example-modal-sm" id="correctAnswer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You guessed the correct answer!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bd-example-modal-sm" id="wrongAnswer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You guessed the wrong answer!</p>
+                    <p>The correct answer was:</p>
+                    <p id="correctAnswer1"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bd-example-modal-sm" id="timeout" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>You ran out of time!</p>
+                    <p>The correct answer was:</p>
+                    <p id="correctAnswer2"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/bootstrap.js"></script>
     <footer class="toesocks"></footer>
 </body>
 </html>
