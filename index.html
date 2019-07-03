@@ -8,58 +8,60 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>The Rad 80's Trivia Game</title>
+    <title>Rad 80's Trivia Game</title>
 </head>
-<body>
+<body class="bg-dark">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-3 text-center"></div>
+            <div class="col-md-6 text-center">
                 <!-- Page Header -->
-                <h1>The Rad 80's Trivia Game</h1>
+                <h1 class="text-light bg-danger rounded mt-2">The Rad 80's Trivia Game</h1>
                 <!-- Hero Image -->
                 <img>
             </div>
+            <div class="col-md-3 text-center"></div>
         </div>
         <div class="row">
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-6 text-center">
                     <!-- Start Game Hero Image -->
-                    <img id="start-image" src="https://media.giphy.com/media/4NtPjpVEKdfz5mJFLk/giphy.gif">
+                    <img id="start-image" class="rounded border border-warning img-fluid" src="https://media.giphy.com/media/4NtPjpVEKdfz5mJFLk/giphy.gif">
                     <div class="start-game">
                         <br />
                         <br />
                     </div>
                     <!-- Start Button -->
                     <div width="250px">
-                        <button id="start-button" class="start-game btn-block">Start Party</button>
+                        <button id="start-button" class="start-game btn-block rounded bg-success text-light">Start Party</button>
                     </div>
                     <!-- Timer -->
                     <div id="timer-div">
-                        <h2 id="timer-label">Timer:</h2>
-                        <h3 id="timer"></h3>
+                        <h2 id="timer-label" class="text-light">Timer:</h2>
+                        <h3 id="timer" class="text-light"></h3>
                     </div>
                     <!-- Question -->
-                    <div id="question-div">
+                    <div id="question-div" class="text-light">
                         <p id="question"></p>
                         <p id="question2"></p>
                         <p id="question3"></p>
                     </div>
                     <!-- Answers -->
-                    <div id="answers-div">
-                        <button id="first-answer" class="answer btn-block"></button>
+                    <div id="answers-div" class="text-light">
+                        <button id="first-answer" class="answer btn-block rounded bg-primary text-light"></button>
                         <br />
-                        <button id="second-answer" class="answer btn-block"></button>
+                        <button id="second-answer" class="answer btn-block rounded bg-warning text-light"></button>
                         <br />
-                        <button id="third-answer" class="answer btn-block"></button>
+                        <button id="third-answer" class="answer btn-block rounded bg-success text-light"></button>
                         <br />
-                        <button id="fourth-answer" class="answer btn-block"></button>
+                        <button id="fourth-answer" class="answer btn-block rounded bg-danger text-light"></button>
                     </div>
                     <!-- Play Again Button -->
-                    <button id="play-again-button" class="start-game">Play again?</button>
+                    <button id="play-again-button" class="start-game btn-block rounded bg-success text-light">Play again?</button>
                     <div id="play-image" class="text-center">
                         <br />
-                        <img src="https://media.giphy.com/media/YBbGpSHIQSxzcfPhbm/giphy.gif">
+                        <img class="rounded border border-primary img-fluid" src="https://media.giphy.com/media/YBbGpSHIQSxzcfPhbm/giphy.gif">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -72,7 +74,7 @@
                 <div class="modal-body">
                     <p class="font-weight-bold">You guessed the correct answer!</p>
                     <div class="text-center">
-                        <img src="https://media.giphy.com/media/62PP2yEIAZF6g/giphy.gif" width="250px">
+                        <img class="rounded border border-success img-fluid" src="https://media.giphy.com/media/62PP2yEIAZF6g/giphy.gif">
                     </div>
                 </div>
             </div>
@@ -86,7 +88,7 @@
                     <p>The correct answer was:</p>
                     <p id="correctAnswer1"></p>
                     <div class="text-center">
-                        <img src="https://media.giphy.com/media/njiFH82QA9vHy/giphy.gif" width="250px">
+                        <img class="rounded border border-danger img-fluid" src="https://media.giphy.com/media/njiFH82QA9vHy/giphy.gif">
                     </div>
                 </div>
             </div>
@@ -100,7 +102,7 @@
                     <p>The correct answer was:</p>
                     <p id="correctAnswer2"></p>
                     <div class="text-center">
-                        <img src="https://media.giphy.com/media/l3vRgCb3zZJcBS1Wg/giphy.gif" width="250px">
+                        <img class="rounded border border-warning img-fluid" src="https://media.giphy.com/media/l3vRgCb3zZJcBS1Wg/giphy.gif">
                     </div>
                 </div>
             </div>
