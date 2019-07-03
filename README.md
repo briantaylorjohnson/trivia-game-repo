@@ -1,2 +1,17 @@
-# trivia-game-repo
-This is Taylor Johnson's Homework #5 for the Georgia Tech Coding Boot Camp
+# The Rad 80s Trivia Game (Homework 5)
+### Overview
+The Rad 80s Trivia Game is the Homework 5 submission for Taylor Johnson in the Georgia Tech Coding Bootcamp. It uses HTML, CSS, Bootstrap, JavaScript, and jQuery to build a time-based triva game with a 1980s theme. Each trivia question has a maximum time allowed to answer. 
+
+In the game, the player is presented a series of trivia questions with a theme from the 80s decade. When the player starts the game, the timer begins to count down immediately. The player must answer the question before the timer reaches zero. If the timer reaches zero, then the player is notified that his timer has run out and the question is recorded as incorrectly answered. If the player answers the question, then he is notified as to if the answerchosen is correct or incorrect. After this brief notification, the player is immediately presented with the next question and a refreshed countdown timer.
+
+After all questions in the deck (array) of questions have been answered (correctly or incorrectly), the game is over. The player is presented with an onscreen game over message and a count of the number of questions answered correctly and incorrectly. The player may then click the "Play again?" button to restart the game.
+
+### Mechanics
+When the application loads, the player is presented with a "Start Party" (start game) button and an animated 80s gif. When the player clicks this button, the game is initialized with all game level variables: timer, correctly answered question count, incorrectly answered question count, and a counter to track which question the player is currently on. The setInterval function is used to operate the countdown timer and update the DOM every second (1000 ms).
+
+Once the game has started and the countdown timer is running, a question is retrieved from the questions array. This question along with its answers (one correct and three incorrect) are presented to the player in the form of buttons. The player must click one of these buttons before the countdown timer reaches zero. A fitting 80s Rainbow Briter animated gif displays while the game is being played and on the game over screen.
+
+When the player clicks one of the four answer buttons, the button clicked is evaluated against the correct answer for the current question. If the two values are equal, then the player has answered the question correctly. If the values are not equal, then the player has selected an incorrect answer to the current question. Depending on this outcome, the count for correct answers or incorrect answers is incremented by one to keep score. If the timer reaches zero before the player makes a selection, then the outcome is recorded as an incorrect answers. For each of these three outcomes, a modal with appropriate messaging is presented to the player. The player is unable to click out or ESC out of the modal. The modal will be automatically closed after three seconds. 
+
+When the modal closes, if there are remaining questions to be answered, the player is presented the next question, along with a refreshed countdown timer. If there are no more questions to be answered, then the game is over. The player is presented a game over mesasge in the browser window, as well as a count for questions answered correctly and incorrectly. If the player wishes to play again, the "Play again?" button can be clicked. This will reset the game level variables and immediately present a question with a refreshed countdown timer.
+
