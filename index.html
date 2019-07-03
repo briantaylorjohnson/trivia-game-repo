@@ -2,23 +2,35 @@
 <html lang="en-us">
 <head>
     <meta charset="UTF-8">
+    
+    <!-- Allows for responsive functionality on multiple viewports -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Allows for custom CSS beyond that provided by Bootstrap (if needed) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Link to jQuery library -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    <!-- Link to Bootstrap/Popper JS libraries (if needed) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <!-- Title displayed in browser window/tab -->
     <title>Rad 80's Trivia Game</title>
 </head>
+
+<!-- Body confirming to Bootstrap grid with main container, rows, and columns -->
 <body class="bg-dark">
     <div class="container">
         <div class="row">
             <div class="col-md-3 text-center"></div>
             <div class="col-md-6 text-center">
                 <!-- Page Header -->
-                <h1 class="text-light bg-danger rounded mt-2">The Rad 80's Trivia Game</h1>
-                <!-- Hero Image -->
-                <img>
+                <h1 class="text-light bg-danger rounded mt-2">The Rad 80's Trivia Game</h1>ß
             </div>
             <div class="col-md-3 text-center"></div>
         </div>
@@ -26,27 +38,31 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-6 text-center">
+
                     <!-- Start Game Hero Image -->
-                    <img id="start-image" class="rounded border border-warning img-fluid" src="https://media.giphy.com/media/4NtPjpVEKdfz5mJFLk/giphy.gif">
+                    <img id="start-im∂age" class="rounded border border-warning img-fluid" src="https://media.giphy.com/media/4NtPjpVEKdfz5mJFLk/giphy.gif">
                     <div class="start-game">
                         <br />
                         <br />
                     </div>
+
                     <!-- Start Button -->
                     <div width="250px">
                         <button id="start-button" class="start-game btn-block rounded bg-success text-light">Start Party</button>
                     </div>
+
                     <!-- Timer -->
                     <div id="timer-div">
                         <h2 id="timer-label" class="text-light">Timer:</h2>
                         <h3 id="timer" class="text-light"></h3>
                     </div>
+
                     <!-- Question -->
                     <div id="question-div" class="text-light">
                         <p id="question"></p>
                         <p id="question2"></p>
-                        <p id="question3"></p>
                     </div>
+
                     <!-- Answers -->
                     <div id="answers-div" class="text-light">
                         <button id="first-answer" class="answer btn-block rounded bg-primary text-light"></button>
@@ -57,6 +73,7 @@
                         <br />
                         <button id="fourth-answer" class="answer btn-block rounded bg-danger text-light"></button>
                     </div>
+
                     <!-- Play Again Button -->
                     <button id="play-again-button" class="start-game btn-block rounded bg-success text-light">Play again?</button>
                     <div id="play-image" class="text-center">
@@ -68,6 +85,9 @@
                 </div>
             </div>
     </div>
+
+    <!-- Modals dynamically displayed based upon game outcomes (correct answer, incorrect answer, and timeout) -->
+    <!-- Modal displayed for correct answers -->
     <div class="modal bd-example-modal-sm" id="correctAnswer" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,6 +100,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal displayed for incorrect answers -->
     <div class="modal bd-example-modal-sm" id="wrongAnswer" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,6 +116,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal displayed for when the timer runs out for a question -->
     <div class="modal bd-example-modal-sm" id="timeout" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -109,8 +133,11 @@
         </div>
     </div>
 
+    <!-- Executes the core JavaScript for the 80's Trivia application and Bootstrap -->
     <script src="assets/javascript/app.js"></script>
     <script src="assets/javascript/bootstrap.js"></script>
+
+    <!-- Proprietary, anti-plagiarism "toesocks" footer/class included in all of Taylor's programs -->
     <footer class="toesocks"></footer>
 </body>
 </html>
