@@ -2,64 +2,112 @@ $(document).ready(function()
 {
 
     var questionsArr = [{
-        question: "What is the sum of 3 and 4?", 
-        correctAnswer: "7",
+        question: "What band/artist sang the song: Hot for Teacher?", 
+        correctAnswer: "Van Halen",
         wrongAnswers:
         {
-            1:"1",
-            2:"5",
-            3:"12",
+            1:"Ted Nugent",
+            2:"Bon Jovi",
+            3:"Prince",
         },
     },
     {
-        question: "How many letters are in the word apple?", 
-        correctAnswer: "5",
+        question: "The Muppets were the brainchild of this man:",
+        correctAnswer: "Jim Henson",
         wrongAnswers:
         {
-            1:"2",
-            2:"6",
-            3:"3",
+            1:"Tim Burton",
+            2:"John Denver",
+            3:"Kermit the Frog",
+        }
+    },
+    {
+        question: "Which 80s stuffed toy would playback a cassette tape? Hint: These can 'barely' be found now!",
+        correctAnswer: "Teddy Ruxpin",
+        wrongAnswers:
+        {
+            1:"Cabbage Patch Kids",
+            2:"Care Bears",
+            3:"Glo-Worm",
+        }
+    },
+    {
+        question: "Who was the lead singer for the band Poison?", 
+        correctAnswer: "Brett Michaels",
+        wrongAnswers:
+        {
+            1:"Bono",
+            2:"Michael Jackson",
+            3:"Mark Knopfler",
         },
 
     },
     {
-        question: "What is the capital of Georgia?",
-        correctAnswer: "Atlanta",
+        question: "This super model was famous for her pinup in a red swimsuit:",
+        correctAnswer: "Farrah Fawcett",
         wrongAnswers:
         {
-            1:"Columbus",
-            2:"Macon",
-            3:"Gainesville",
+            1:"Cindy Crawford",
+            2:"Brooke Shields",
+            3:"Christie Brinkley",
+        }
+    },
+    {
+        question: "Which famouse 1980s beverage came in the flavor Ecto-Cooler?",
+        correctAnswer: "Hi-C",
+        wrongAnswers:
+        {
+            1:"Capri Sun",
+            2:"Juicy Juice",
+            3:"Crystal Light",
+        }
+    },
+    {
+        question: "What was the most popular car of the 1980s?",
+        correctAnswer: "Ford Escort",
+        wrongAnswers:
+        {
+            1:"Vauxhall Cavalier",
+            2:"Austin/MG Metro",
+            3:"Subraru BRAT",
+        }
+    },
+    {
+        question: "Who directed the movie The Breakfast Club?",
+        correctAnswer: "John Hughes",
+        wrongAnswers:
+        {
+            1:"Steven Spielberg",
+            2:"Tim Burton",
+            3:"James Cameron",
         }
     }];
 
-    var gameLength = 3;
-    var i = 0;
-    var time = 20;
-
+    var time = 10;
     var correctCount;
     var wrongCount;
     var questionCount;
     var timer;
-    var modal;
 
     $("#start-button").show();
     $("#timer").hide();
+    $("#timer-label").hide();
     $("#question").empty();
     $("#question").hide();
     $("#question2").empty();
     $("#question2").hide();
     $("#answers-div").hide();
     $("#play-again-button").hide();
+    $("#play-image").hide();
 
 
     // This is a function that gets the next trivia question when the player answers a question
     function getNextQuestion()
     {
-        $("#timer").text("20s");
-        time = 20;
+        $("#timer").text("10s");
+        time = 10;
         timer = setInterval(startTimer, 1000);
-        
+
         // Displays next question
         console.log("Question: " + questionsArr[questionCount].question);
         console.log("Answer 1: " + questionsArr[questionCount].wrongAnswers[1]);
@@ -80,6 +128,7 @@ $(document).ready(function()
         console.log("Correct Answers: " + correctCount);
         console.log("Wrong Answers: " + wrongCount);
 
+        $("#timer-label").hide();
         $("#timer").text("Game over!");
         $("#question2").text("Wrong Answers: " + wrongCount);
         $("#question").text("Correct Answers: " + correctCount);
@@ -97,16 +146,19 @@ $(document).ready(function()
         {
             stopTimer();
             console.log("Time is up!");
-            $("#timer").text("Time is up!");
+            $("#correctAnswer2").text(questionsArr[questionCount].correctAnswer);
+            $("#timeout").modal({backdrop: 'static', keyboard: false});
+
+            wrongCount++;
             questionCount++;
             if( questionCount >= questionsArr.length)
             {
-                endGame();
+                modal = setTimeout(function () { endGame(); $("#timeout").modal('hide'); }, 3000);
             }
 
             else
             {       
-                getNextQuestion();
+                modal = setTimeout(function () { getNextQuestion(); $("#timeout").modal('hide'); }, 3000);
             }
         }
         else
@@ -126,7 +178,7 @@ $(document).ready(function()
     {
         console.log("Wrong answer!");
         $("#correctAnswer1").text(questionsArr[questionCount].correctAnswer);
-        $("#wrongAnswer").modal();
+        $("#wrongAnswer").modal({backdrop: 'static', keyboard: false});
 
         // Increase wrong answer count
         wrongCount++;
@@ -135,7 +187,7 @@ $(document).ready(function()
 
         if( questionCount >= questionsArr.length)
         {
-            modalClose(endGame());;
+            modal = setTimeout(function () { endGame(); $("#wrongAnswer").modal('hide'); }, 3000);
         }
 
         else
@@ -147,15 +199,21 @@ $(document).ready(function()
     function correctAnswer()
     {
         console.log("Correct Answer");
+        $("#correctAnswer").modal({backdrop: 'static', keyboard: false});
         // Increase correct answer count
         correctCount++;
         questionCount++;
         stopTimer();
-    }
 
-    function modalClose(passedFunction)
-    {
-        
+        if( questionCount >= questionsArr.length)
+        {
+            modal = setTimeout(function () { endGame(); $("#correctAnswer").modal('hide'); }, 3000);
+        }
+
+        else
+        {       
+            modal = setTimeout(function () { getNextQuestion(); $("#correctAnswer").modal('hide'); }, 3000);
+        }
     }
 
     $(".start-game").on("click", function()
@@ -166,11 +224,14 @@ $(document).ready(function()
         
         console.log("Game Started");
         $(".start-game").hide();
-        $("#timer").text("20s");
+        $("#start-image").hide();
+        $("#timer-label").show();
+        $("#timer").text("10s");
         $("#timer").show();
         $("#question2").hide();
         $("#question").show();
         $("#answers-div").show();
+        $("#play-image").show();
 
         getNextQuestion();
     });
@@ -187,17 +248,6 @@ $(document).ready(function()
         else
         {
             correctAnswer();
-
-            if( questionCount >= questionsArr.length)
-            {
-                modalClose(endGame());;
-            }
-
-            else
-            {       
-                modalClose(getNextQuestion());
-            }
-
         }
     });
 });

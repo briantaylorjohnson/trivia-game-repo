@@ -8,25 +8,36 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>The Wicked 80's Trivia Game</title>
+    <title>The Rad 80's Trivia Game</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <!-- Page Header -->
-                <h1>The Wicked 80's Trivia Game</h1>
+                <h1>The Rad 80's Trivia Game</h1>
                 <!-- Hero Image -->
                 <img>
             </div>
         </div>
         <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6 text-center">
+                    <!-- Start Game Hero Image -->
+                    <img id="start-image" src="https://media.giphy.com/media/4NtPjpVEKdfz5mJFLk/giphy.gif">
+                    <div class="start-game">
+                        <br />
+                        <br />
+                    </div>
                     <!-- Start Button -->
-                    <button id="start-button" class="start-game">Start Party</button>
+                    <div width="250px">
+                        <button id="start-button" class="start-game btn-block">Start Party</button>
+                    </div>
                     <!-- Timer -->
                     <div id="timer-div">
-                        <h2 id="timer">20s</h2>
+                        <h2 id="timer-label">Timer:</h2>
+                        <h3 id="timer"></h3>
                     </div>
                     <!-- Question -->
                     <div id="question-div">
@@ -36,16 +47,22 @@
                     </div>
                     <!-- Answers -->
                     <div id="answers-div">
-                        <button id="first-answer" class="answer"></button>
+                        <button id="first-answer" class="answer btn-block"></button>
                         <br />
-                        <button id="second-answer" class="answer"></button>
+                        <button id="second-answer" class="answer btn-block"></button>
                         <br />
-                        <button id="third-answer" class="answer"></button>
+                        <button id="third-answer" class="answer btn-block"></button>
                         <br />
-                        <button id="fourth-answer" class="answer"></button>
+                        <button id="fourth-answer" class="answer btn-block"></button>
                     </div>
                     <!-- Play Again Button -->
                     <button id="play-again-button" class="start-game">Play again?</button>
+                    <div id="play-image" class="text-center">
+                        <br />
+                        <img src="https://media.giphy.com/media/YBbGpSHIQSxzcfPhbm/giphy.gif">
+                    </div>
+                </div>
+                <div class="col-md-3">
                 </div>
             </div>
     </div>
@@ -53,7 +70,10 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>You guessed the correct answer!</p>
+                    <p class="font-weight-bold">You guessed the correct answer!</p>
+                    <div class="text-center">
+                        <img src="https://media.giphy.com/media/62PP2yEIAZF6g/giphy.gif" width="250px">
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,9 +82,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>You guessed the wrong answer!</p>
+                    <p class="font-weight-bold">You guessed the wrong answer!</p>
                     <p>The correct answer was:</p>
                     <p id="correctAnswer1"></p>
+                    <div class="text-center">
+                        <img src="https://media.giphy.com/media/njiFH82QA9vHy/giphy.gif" width="250px">
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,9 +96,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>You ran out of time!</p>
+                    <p class="font-weight-bold">You ran out of time!</p>
                     <p>The correct answer was:</p>
                     <p id="correctAnswer2"></p>
+                    <div class="text-center">
+                        <img src="https://media.giphy.com/media/l3vRgCb3zZJcBS1Wg/giphy.gif" width="250px">
+                    </div>
                 </div>
             </div>
         </div>
